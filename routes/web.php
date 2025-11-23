@@ -1,71 +1,51 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Route;
-use App\Models\Berita;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 
 
-//// Web Routes ////
-/// update file baru ///
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/berita', function () {
-    return view('berita');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+/// =======================
+/// STATIC PAGE
+/// =======================
+Route::view('/home', 'home');
+Route::view('/contact', 'contact');
+Route::view('/about', 'about');
 
 
-/// ===== bagian sesuai materi dosen ======= ///
-Route::get('/', function () {
-    return view('welcome');
-});
+/// =======================
+/// BAGIAN DOSEN
+/// =======================
+Route::view('/dosen-home', 'dosen.home');
+Route::view('/dosen-profil', 'dosen.profile');
+Route::view('/dosen-berita', 'dosen.berita');
 
-Route::get('/dosen-home', function () {
-    return view('dosen.Home',);
-});
-
-Route::get('dosen-profil', function () {
-    return view('dosen.profile');
-});
-
-Route::get('/dosen-berita', function () {
-    return view('dosen.berita');
-});
-
-Route::get('/dosen-berita/{slug}', function ($slugp) {
-    return view('dosen.singleberita');
-});
-
-Route::get('/dosen-about', function () {
-    return view('dosen.about');
-});
-
-Route::get('/dosen-mahasiswa', function () {
-    return view('dosen,nahasiswa');
-});
-
-Route::get('/dosen-mahasiswa',[MahasiswaController::Class, 'index'])->name('mahasiswa');
-Route::post('/dosen- insertdata' [MahasiswaController::Class,'insertdata' ])->name('insertdata');
-Route::get('/dosen-tambahmahasiswa', [MahasiswanController::Class, 'tambahmahasiswa'])->name('tambahmahasiswa');
-Router::get('/dosen-tampildata/{id}', [MahasiswaController::Class, 'tampildata'])->name('tampildata');
-
-Route::get('/about', function () {
-    return view('about');
+Route::get('/dosen-berita/{slug}', function ($slug) {
+    return view('dosen.singleberita', compact('slug'));
 });
 
 
+/// =======================
+/// CRUD MAHASISWA
+/// =======================
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('insertdata');
+Route::resource('mahasiswa', MahasiswaController::class);
+
+
+/// =======================
+/// BERITA MENGGUNAKAN CONTROLLER
+/// =======================
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+
+
+/// =======================
+/// PROFIL & KONTAK
+/// =======================
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
