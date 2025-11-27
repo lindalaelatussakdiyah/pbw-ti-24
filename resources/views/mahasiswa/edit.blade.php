@@ -19,6 +19,14 @@
         <input type="text" name="jurusan" class="form-control" value="{{ $mahasiswa->jurusan }}" required>
     </div>
     <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" name="email" class="form-control" value="{{ $mahasiswa->email }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">No HP</label>
+        <input type="text" name="nohp" class="form-control" value="{{ $mahasiswa->nohp }}" required>
+    </div>
+    <div class="mb-3">
         <label class="form-label">IPK</label>
         <input type="number" step="0.01" name="ipk" class="form-control" value="{{ $mahasiswa->ipk }}">
     </div>

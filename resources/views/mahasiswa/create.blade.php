@@ -26,6 +26,16 @@
         </div>
 
         <div class="mb-3">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label>NO HP</label>
+            <input type="number" class="form-control" name="nohp" required>
+        </div>
+
+        <div class="mb-3">
             <label>IPK</label>
             <input type="text" class="form-control" name="ipk">
         </div>

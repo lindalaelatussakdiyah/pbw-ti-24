@@ -17,6 +17,8 @@
             <th>Nama</th>
             <th>NIM</th>
             <th>Jurusan</th>
+            <th>Email</th>
+            <th>No Hp</th>
             <th>IPK</th>
             <th>Aksi</th>
         </tr>
@@ -28,6 +30,8 @@
             <td>{{ $m->nama }}</td>
             <td>{{ $m->nim }}</td>
             <td>{{ $m->jurusan }}</td>
+            <td>{{ $m->email }}</td>
+            <td>{{ $m->noHp }}</td>
             <td>{{ $m->ipk }}</td>
             <td>
                 <a href="{{ route('mahasiswa.edit', $m->id) }}" class="btn btn-sm btn-warning">Edit</a>
