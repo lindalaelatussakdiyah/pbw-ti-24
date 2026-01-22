@@ -7,10 +7,22 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
 
 
+use App\Http\Controllers\AuthController;
+
+/// =======================
+/// AUTHENTICATION
+/// =======================
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 /// =======================
 /// STATIC PAGE
 /// =======================
-Route::view('/home', 'home');
+Route::view('/home', 'home')->name('home');
 Route::view('/contact', 'contact');
 Route::view('/about', 'about');
 Route::redirect('/', '/home');
@@ -29,13 +41,15 @@ Route::get('/dosen-berita/{slug}', function ($slug) {
 
 
 /// =======================
-/// CRUD MAHASISWA
+/// CRUD MAHASISWA (PROTECTED)
 /// =======================
-
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
-Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('insertdata');
-Route::resource('mahasiswa', MahasiswaController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+    Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+    Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('insertdata');
+    Route::resource('mahasiswa', MahasiswaController::class)->except(['index', 'create', 'store']);
+    // Note: resource route implicitly handles other methods, but manual definition above for custom naming is prioritized usually
+});
 
 
 /// =======================

@@ -73,6 +73,30 @@
                         <a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-lg-3">
+                    @guest
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary me-2" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </div>
     </nav>
