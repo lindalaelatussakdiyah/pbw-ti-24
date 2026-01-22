@@ -11,7 +11,7 @@
                 <div class="row align-items-center mb-5">
                     <div class="col-md-4 text-center">
                         <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 200px; height: 200px; overflow: hidden;">
-                            <img src="https://source.unsplash.com/random/200x200/?university,logo" alt="Logo Kampus" class="img-fluid">
+                            <img src="{{ asset('logo_kampus.png') }}" alt="Logo Kampus" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-md-8">
