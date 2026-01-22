@@ -14,5 +14,7 @@ class Mahasiswa extends Model
         'nim',
         'jurusan',
         'ipk',
+        'email',
+        'noHp',
     ];
 }

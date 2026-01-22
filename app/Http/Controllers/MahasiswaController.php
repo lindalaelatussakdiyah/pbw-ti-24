@@ -24,6 +24,8 @@ class MahasiswaController extends Controller
             'nama' => 'required',
             'nim' => 'required|unique:mahasiswas',
             'jurusan' => 'required',
+            'email' => 'required|email|unique:mahasiswas',
+            'noHp' => 'required',
             'ipk' => 'nullable|numeric',
         ]);
 
@@ -42,6 +44,8 @@ class MahasiswaController extends Controller
             'nama' => 'required',
             'nim' => 'required|unique:mahasiswas,nim,' . $mahasiswa->id,
             'jurusan' => 'required',
+            'email' => 'required|email|unique:mahasiswas,email,' . $mahasiswa->id,
+            'noHp' => 'required',
             'ipk' => 'nullable|numeric',
         ]);
 

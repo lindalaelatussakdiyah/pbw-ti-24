@@ -13,6 +13,7 @@ use App\Http\Controllers\ContactController;
 Route::view('/home', 'home');
 Route::view('/contact', 'contact');
 Route::view('/about', 'about');
+Route::redirect('/', '/home');
 
 
 /// =======================
